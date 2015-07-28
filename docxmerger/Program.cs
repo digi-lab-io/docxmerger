@@ -37,10 +37,10 @@ namespace DocxMerger
             foreach (var stream in paramDocumentstreams)
             {
                 var tempms = new MemoryStream();
-                stream.CopyTo(tempms);
 
                 if (0 != stream.Length)
                 {
+                    stream.CopyTo(tempms);
                     WmlDocument doc = new WmlDocument(stream.Length.ToString(), tempms);
                     sources.Add(new Source(doc, true));
                 }
