@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocxMerger", "ConsoleApplication3\DocxMerger.csproj", "{FE6BCD57-21E1-4C52-ACC8-9A16CDECA3F9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocxMerger", "docxmerger\DocxMerger.csproj", "{FE6BCD57-21E1-4C52-ACC8-9A16CDECA3F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

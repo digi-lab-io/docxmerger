@@ -13,10 +13,6 @@ namespace DocxMerger
         {
             try
             {
-
-                //string[] customArgs = { "C:\\tools\\DDD.docx", "C:\\tools\\test01.docx", "C:\\tools\\test02.docx" };
-                //args = customArgs;
-
                 string outputFileName = @args[0];
                 List<FileStream> list = new List<FileStream>();
 
@@ -42,10 +38,11 @@ namespace DocxMerger
             {
                 var tempms = new MemoryStream();
                 stream.CopyTo(tempms);
-                WmlDocument doc = new WmlDocument(stream.Length.ToString(), tempms);
-                if (!doc.MainDocumentPart.IsEmpty)
+
+                if (0 != stream.Length)
                 {
-                    sources.Add(new Source(new WmlDocument(stream.Length.ToString(), tempms), true));
+                    WmlDocument doc = new WmlDocument(stream.Length.ToString(), tempms);
+                    sources.Add(new Source(doc, true));
                 }
             }
 
