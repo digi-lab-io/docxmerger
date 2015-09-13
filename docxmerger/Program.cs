@@ -24,30 +24,47 @@ namespace DocxMerger
                 mergeDocx(outputFileName, list);
 
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                Console.WriteLine(ex.ToString());
+                Console.WriteLine("Application Error ocurred, please check the log: ");
+                Console.WriteLine(e.ToString());
             }
         }
 
         static void mergeDocx(string paramOutputFile, List<FileStream> paramDocumentstreams)
         {
-
             var sources = new List<Source>();
-            foreach (var stream in paramDocumentstreams)
+            
+
+            try
             {
-                var tempms = new MemoryStream();
 
-                if (0 != stream.Length)
+                foreach (var stream in paramDocumentstreams)
                 {
-                    stream.CopyTo(tempms);
-                    WmlDocument doc = new WmlDocument(stream.Length.ToString(), tempms);
-                    sources.Add(new Source(doc, true));
-                }
-            }
+                    var tempms = new MemoryStream();
+                    if (0 != stream.Length)
+                    {
+                        stream.CopyTo(tempms);
+                        WmlDocument doc = new WmlDocument(stream.Length.ToString(), tempms);
+                        sources.Add(new Source(doc, true));
+                    }
+                    tempms.Close();
 
-            var mergedDoc = DocumentBuilder.BuildDocument(sources);
-            mergedDoc.SaveAs(paramOutputFile);
+
+                }
+
+                var mergedDoc = DocumentBuilder.BuildDocument(sources);
+                mergedDoc.SaveAs(paramOutputFile);
+                
+
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("An Error ocurred while merging, please check the log: ");
+                Console.WriteLine(e.ToString());
+            }
         }
+    
     }
 }
