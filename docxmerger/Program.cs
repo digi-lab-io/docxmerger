@@ -33,8 +33,9 @@ namespace DocxMerger
 
         static void mergeDocx(string paramOutputFile, List<FileStream> paramDocumentstreams)
         {
+
             var sources = new List<Source>();
-            
+            Console.WriteLine("Started merging documents: '{0}'.", sources);
 
             try
             {
@@ -55,7 +56,7 @@ namespace DocxMerger
 
                 var mergedDoc = DocumentBuilder.BuildDocument(sources);
                 mergedDoc.SaveAs(paramOutputFile);
-                
+
 
 
             }
@@ -65,6 +66,6 @@ namespace DocxMerger
                 Console.WriteLine(e.ToString());
             }
         }
-    
+
     }
 }
