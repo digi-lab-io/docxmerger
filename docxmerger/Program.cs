@@ -18,10 +18,12 @@ namespace DocxMerger
 
                 foreach (var fileName in args.Skip(1))
                 {
+                    Console.WriteLine("Adding document to list of documents to be merged: '{0}'.", @fileName);
                     list.Add(File.Open(@fileName, FileMode.Open));
                 }
 
                 mergeDocx(outputFileName, list);
+                Console.WriteLine("Success, the output file name of the merged document is: '{0}'.", @outputFileName);
 
             }
             catch (Exception e)
@@ -35,7 +37,6 @@ namespace DocxMerger
         {
 
             var sources = new List<Source>();
-            Console.WriteLine("Started merging documents: '{0}'.", sources);
 
             try
             {
@@ -54,6 +55,7 @@ namespace DocxMerger
 
                 }
 
+                Console.WriteLine("Merging documents...");
                 var mergedDoc = DocumentBuilder.BuildDocument(sources);
                 mergedDoc.SaveAs(paramOutputFile);
 
